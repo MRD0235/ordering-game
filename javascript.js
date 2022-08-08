@@ -7,9 +7,6 @@ console.log(correctOrder)
 const clearBtn = document.getElementById("clear")
 const display = document.querySelectorAll(".selection")
 clearBtn.addEventListener("click", () => {
-    // optionBtns.forEach(button =>
-    //     button.disabled = false
-    // )
     display.forEach(box =>
         box.textContent = ""    
     )
@@ -18,9 +15,6 @@ clearBtn.addEventListener("click", () => {
 
 const resetBtn = document.getElementById("reset")
 resetBtn.addEventListener("click", () => {
-    // optionBtns.forEach(button =>
-        // button.disabled = false
-    // )
     display.forEach(box =>
         box.textContent = ""    
     )
@@ -39,7 +33,6 @@ optionBtns.forEach(button =>
     button.addEventListener("click", () => {
         nextOpenBox = findOpenBox()
         nextOpenBox.textContent = button.id
-        // button.disabled = true
     })    
 )
 
@@ -80,19 +73,8 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild)
     }
 }
-// function addDiv(input) {
-//     const newDiv = document.createElement("div")
-//     const previousInputDisplay = document.getElementById("previousInputs")
-//     for (let i = 0; i < input.length; i++) {
-//         newDiv.textContent += input[i]
-//         if (i < 2) {newDiv.textContent += " - "}
-//     }
-//     previousInputDisplay.appendChild(newDiv)
-// }
 
 document.addEventListener("keydown", function(event) {
-    // console.log(event.key)
-    // console.log(Math.floor(event.key))
     if (Math.floor(event.key) >= 0) {
         nextOpenBox = findOpenBox()
         nextOpenBox.textContent = event.key
@@ -102,7 +84,6 @@ document.addEventListener("keydown", function(event) {
         else {beforeOpenBox = selectionThree}
         beforeOpenBox.textContent = ""
     } else if (event.key === "Enter") {
-        {
             let userInput = [selectionOne.textContent, selectionTwo.textContent, selectionThree.textContent]
             for (let i = 0; i < correctOrder.length; i++) {     
                 if (correctOrder[i] !== userInput[i]) {
@@ -112,7 +93,6 @@ document.addEventListener("keydown", function(event) {
                     results = `Correct! The code was ${correctOrder}.`
                     display[i].classList.add("fullyCorrect")
                 }
-            }
             resultsText.textContent = results   
             let guessBoxes = document.getElementById("selections")   
             let guessBoxesClone = guessBoxes.cloneNode(true)
@@ -125,10 +105,6 @@ document.addEventListener("keydown", function(event) {
             }
         }
     } else if (event.key === "Escape") {
-        {
-            // optionBtns.forEach(button =>
-            //     button.disabled = false
-            // )
             display.forEach(box =>
                 box.textContent = ""    
             )
@@ -137,6 +113,5 @@ document.addEventListener("keydown", function(event) {
             removeAllChildNodes(history)
             history.innerHTML = "<h3>Guesses:</h3>"
             display.forEach(box => box.classList.remove("fullyCorrect"))
-        }
     }
 })
