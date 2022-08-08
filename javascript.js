@@ -1,3 +1,9 @@
+let ans1 = Math.floor(Math.random() * 10) 
+let ans2 = Math.floor(Math.random() * 10)
+let ans3 = Math.floor(Math.random() * 10)
+let correctOrder = [`${ans1}`, `${ans2}`, `${ans3}`]
+console.log(correctOrder)
+
 const clearBtn = document.getElementById("clear")
 const display = document.querySelectorAll(".selection")
 clearBtn.addEventListener("click", () => {
@@ -37,7 +43,6 @@ optionBtns.forEach(button =>
     })    
 )
 
-const correctOrder = ["1", "3", "2"]
 const testBtn = document.getElementById("test")
 const resultsText = document.getElementById("results")
 const previousInputs = document.getElementById("previousInputs")
