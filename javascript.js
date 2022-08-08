@@ -53,25 +53,26 @@ const resultsText = document.getElementById("results")
 const previousInputs = document.getElementById("previousInputs")
 testBtn.addEventListener("click", () => {
     let userInput = [selectionOne.textContent, selectionTwo.textContent, selectionThree.textContent]
-    for (let i = 0; i < correctOrder.length; i++) {     
+    for (let i = 0; i < correctOrder.length; i++) {
         if (correctOrder[i] !== userInput[i]) {
-            results = "Wrong!"
-            for (let j = 0; j < correctOrder.length; j++) {if (correctOrder[j] === userInput[i]) {display[i].classList.add("partiallyCorrect")}}
-        } else {
-            results = `Correct! The code was ${correctOrder}.`
+            for (let j = 0; j < correctOrder.length; j++) {
+                if (correctOrder[j] === userInput[i]) {
+                    display[i].classList.add("partiallyCorrect")
+                }
+            }
+        } else if (correctOrder[i] === userInput[i]) {
             display[i].classList.add("fullyCorrect")
         }
     }
-    resultsText.textContent = results   
     let guessBoxes = document.getElementById("selections")   
     let guessBoxesClone = guessBoxes.cloneNode(true)
     previousInputs.appendChild(guessBoxesClone)
     optionBtns.forEach(button => button.disabled = false)
-    display.forEach(box => box.textContent = "")
-    for (let i = 0; i < correctOrder.length; i++) {
-        display[i].classList.remove("fullyCorrect")
-        display[i].classList.remove("partiallyCorrect")
-    }
+    display.forEach(box => {
+        box.textContent = ""
+        box.classList.remove("fullyCorrect")
+        box.classList.remove("partiallyCorrect")
+    })
 })
 
 function findOpenBox() {
@@ -96,26 +97,27 @@ document.addEventListener("keydown", function(event) {
         else {beforeOpenBox = selectionThree}
         beforeOpenBox.textContent = ""
     } else if (event.key === "Enter") {
-            let userInput = [selectionOne.textContent, selectionTwo.textContent, selectionThree.textContent]
-            for (let i = 0; i < correctOrder.length; i++) {     
-                if (correctOrder[i] !== userInput[i]) {
-                    results = "Wrong!"
-                    for (let j = 0; j < correctOrder.length; j++) {if (correctOrder[j] === userInput[i]) {display[i].classList.add("partiallyCorrect")}}
-                } else {
-                    results = `Correct! The code was ${correctOrder}.`
-                    display[i].classList.add("fullyCorrect")
+        let userInput = [selectionOne.textContent, selectionTwo.textContent, selectionThree.textContent]
+        for (let i = 0; i < correctOrder.length; i++) {
+            if (correctOrder[i] !== userInput[i]) {
+                for (let j = 0; j < correctOrder.length; j++) {
+                    if (correctOrder[j] === userInput[i]) {
+                        display[i].classList.add("partiallyCorrect")
+                    }
                 }
-            resultsText.textContent = results   
-            let guessBoxes = document.getElementById("selections")   
-            let guessBoxesClone = guessBoxes.cloneNode(true)
-            previousInputs.appendChild(guessBoxesClone)
-            optionBtns.forEach(button => button.disabled = false)
-            display.forEach(box => box.textContent = "")
-            for (let i = 0; i < correctOrder.length; i++) {
-                display[i].classList.remove("fullyCorrect")
-                display[i].classList.remove("partiallyCorrect")
+            } else if (correctOrder[i] === userInput[i]) {
+                display[i].classList.add("fullyCorrect")
             }
         }
+        let guessBoxes = document.getElementById("selections")   
+        let guessBoxesClone = guessBoxes.cloneNode(true)
+        previousInputs.appendChild(guessBoxesClone)
+        optionBtns.forEach(button => button.disabled = false)
+        display.forEach(box => {
+            box.textContent = ""
+            box.classList.remove("fullyCorrect")
+            box.classList.remove("partiallyCorrect")
+        })
     } else if (event.key === "Escape") {
             display.forEach(box =>
                 box.textContent = ""    
