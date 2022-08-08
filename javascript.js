@@ -1,3 +1,15 @@
+// TO DO LIST
+//      Add way to track how many of each number are in the answer
+//      so that it displays the correct amount of yellows for how
+//      many of each number there are
+
+//      Change formatting so when it says if you're right or wrong
+//      with the guess it doesn't mess with the height of the
+//      div that has the results listed. Maybe just remove it and
+//      somehow include a better way to alert the results of each
+//      guess. Maybe just alert if it is completely correct
+
+
 let ans1 = Math.floor(Math.random() * 10) 
 let ans2 = Math.floor(Math.random() * 10)
 let ans3 = Math.floor(Math.random() * 10)
